@@ -20,7 +20,8 @@ r = requests.get(usgs_url)
 r2 = requests.get(img_url)
 
 #Download image locally
-open('BoulderStream.gif', 'wb').write(r2.content)
+filename='BoulderStream.gif'
+open(filename, 'wb').write(r2.content)
 
 #create an OAuthHandler instance. Twitter requires all requests to use OAuth for authentication
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -29,4 +30,5 @@ auth.set_access_token(access_token, access_secret)
  #Construct the API instance
 api = tweepy.API(auth) # create an API object
 status_txt="TODAYs Boulder Creek Bot - looking back "+str(period)+" days via USGS - "+usgs_url
-api.update_with_media('BoulderStream.gif',str(status_txt))
+print status_txt
+api.update_with_media(filename,str(status_txt))
