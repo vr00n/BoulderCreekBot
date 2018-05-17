@@ -18,7 +18,7 @@ An automated twitter bot that reports the daily discharge volume of the Boulder 
 4. You will now have your Application Key/Secret.
 5. Create your Access Key/Secret.
 ![image](https://user-images.githubusercontent.com/4397663/40180395-f3519cfa-59a3-11e8-8759-191026f10539.png)
-6. Fill out `secrets.py` with App/Access Key/Secret.
+6. Fill out `secrets.py` with App/Access Key/Secrets information.
 7. `python bot.py {number of days you want to look back, max 120}`
 8. Tweak as per desire.
 
