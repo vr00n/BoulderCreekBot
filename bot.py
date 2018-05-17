@@ -19,6 +19,8 @@ img_url="https://natwebvaww01.er.usgs.gov/nwisweb/data/img/USGS.06730200.211031.
 r = requests.get(usgs_url)
 r2 = requests.get(img_url)
 
+print img_url
+
 #Download image locally
 filename='BoulderStream.gif'
 open(filename, 'wb').write(r2.content)
@@ -31,4 +33,20 @@ auth.set_access_token(access_token, access_secret)
 api = tweepy.API(auth) # create an API object
 status_txt="TODAYs Boulder Creek Bot - looking back "+str(period)+" days via USGS - "+usgs_url
 print status_txt
-api.update_with_media(filename,str(status_txt))
+try:
+ api.update_with_media(filename,str(status_txt))
+except tweepy.error.TweepError as e:
+ print "Trying 2nd time"
+ try:
+  api.update_with_media(filename,str(status_txt))
+ except tweepy.error.TweepError as f:
+  print "Trying 3rd time"
+  try:
+   api.update_with_media(filename,str(status_txt))
+  except tweepy.error.TweepError as g:
+   print "Trying 4th time"
+   try:
+    api.update_with_media(filename,str(status_txt))
+   except:
+    print "Tried"
+
