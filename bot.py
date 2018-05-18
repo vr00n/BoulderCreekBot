@@ -15,11 +15,13 @@ from_date = d.strftime('%Y%m%d')
 
 #Establish URL endpoints. You need to hit the usgs_url so that the img_url becomes available.
 usgs_url="https://waterdata.usgs.gov/co/nwis/uv?cb_00060=on&cb_00065=on&format=gif_default&site_no=06730200&period="+str(period)+"&begin_date="+str(d)+"&end_date="+str(today)
-img_url="https://natwebvaww01.er.usgs.gov/nwisweb/data/img/USGS.06730200.211031.00060.."+from_date+"."+end_date+".log.0.p50.gif"
+#img_url="https://natwebvaww01.er.usgs.gov/nwisweb/data/img/USGS.06730200.211031.00060.."+from_date+"."+end_date+".log.0.p50.gif"
+img_url="https://natwebcaww01.wr.usgs.gov/nwisweb/data/img/USGS.06730200.211031.00060..20180403.20180518.log.0.p50.gif"
 r = requests.get(usgs_url)
 r2 = requests.get(img_url)
 
 print img_url
+print usgs_url
 
 #Download image locally
 filename='BoulderStream.gif'
@@ -47,6 +49,6 @@ except tweepy.error.TweepError as e:
    print "Trying 4th time"
    try:
     api.update_with_media(filename,str(status_txt))
-   except:
-    print "Tried"
+   except tweepy.error.TweepError as h:
+    print h
 
