@@ -10,18 +10,19 @@ An automated twitter bot that reports the daily discharge volume of the Boulder 
 - Twitter Bots are fun.
 
 ## HOW
-1. [Install Python here](https://www.python.org/downloads/mac-osx/)
+1. [Install Python here - preferably 2.7](https://www.python.org/downloads/mac-osx/)
 2. git clone this repo
-3. Create a dummy Twitter account. For this to work, you need to associate your phone number with your Twitter account.
-4. Go to `apps.twitter.com` and click on 'Create New App ' button
-5. Fill out details like so and hit `Create you Twitter Application`.
+3. `pip install tweepy` + `pip install requests`
+4. Create a dummy Twitter account. For this to work, you need to associate your phone number with your Twitter account.
+5. Go to `apps.twitter.com` and click on 'Create New App ' button
+6. Fill out details like so and hit `Create you Twitter Application`.
 ![image](https://user-images.githubusercontent.com/4397663/40180231-8ddd7aec-59a3-11e8-98c4-5cf0960ce2a8.png)
-6. You will now have your Application Key/Secret.
-7. Create your Access Key/Secret.
+7. You will now have your Application Key/Secret.
+8. Create your Access Key/Secret.
 ![image](https://user-images.githubusercontent.com/4397663/40180395-f3519cfa-59a3-11e8-8759-191026f10539.png)
-8. Fill out `secrets.py` with App/Access Key/Secrets information.
-9. `python bot.py {number of days you want to look back, max 120}`
-10. Tweak as per desire.
+9. Fill out `secrets.py` with App/Access Key/Secrets information.
+10. `python bot.py {number of days you want to look back, max 120}`
+11. Tweak as per desire.
 
 
 ## WHEN 
