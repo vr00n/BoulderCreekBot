@@ -4,6 +4,7 @@ from secrets import *
 import datetime
 from datetime import date
 import sys
+import os
 
 period=sys.argv[1]
 
@@ -15,17 +16,25 @@ from_date = d.strftime('%Y%m%d')
 
 #Establish URL endpoints. You need to hit the usgs_url so that the img_url becomes available.
 usgs_url="https://waterdata.usgs.gov/co/nwis/uv?cb_00060=on&cb_00065=on&format=gif_default&site_no=06730200&period="+str(period)+"&begin_date="+str(d)+"&end_date="+str(today)
-img_url="https://natwebvaww01.er.usgs.gov/nwisweb/data/img/USGS.06730200.211031.00060.."+from_date+"."+end_date+".log.0.p50.gif"
-#img_url="https://natwebcaww01.wr.usgs.gov/nwisweb/data/img/USGS.06730200.211031.00060..20180403.20180518.log.0.p50.gif"
+img_url1="https://natwebvaww01.er.usgs.gov/nwisweb/data/img/USGS.06730200.211031.00060.."+from_date+"."+end_date+".log.0.p50.gif"
+img_url2="https://natwebcaww01.wr.usgs.gov/nwisweb/data/img/USGS.06730200.211031.00060.."+from_date+"."+end_date+".log.0.p50.gif"
 r = requests.get(usgs_url, timeout=None)
-r2 = requests.get(img_url, timeout=None)
+r2 = requests.get(img_url2, timeout=None)
+print "ImageSize: ",len(r2.content)
+if len(r2.content) < 7000:
+ print "Trying using alternate image_url"
+ r2 = requests.get(img_url1, timeout=None)
+else:
+ print "Image good"
 
-#print img_url
+print img_url1
+print img_url2
 print usgs_url
 
 #Download image locally
 filename='BoulderStream.gif'
 open(filename, 'wb').write(r2.content)
+
 
 #create an OAuthHandler instance. Twitter requires all requests to use OAuth for authentication
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
